@@ -88,8 +88,6 @@ Maintainer: \packageMaintainer{SKFCPD}
     y_mat[,j] = y_each_dim
   }
   
-  plot(y_mat[,1]~x_mat)
-  
   ## Detect changepoints by SKFCPD
   Online_CPD_1 = SKFCPD(design = x_mat,
                         response = y_mat,
@@ -97,34 +95,4 @@ Maintainer: \packageMaintainer{SKFCPD}
   
   ## visulize the results
   plot_SKFCPD(Online_CPD_1)
-  
-  #------------------------------------------------------------------------------
-  # Example: iterative fast online changepoint detection
-  #------------------------------------------------------------------------------
-  
-  # train/test split
-  train_index = 1:50
-  test_index = 51:150
-  
-  x_train = x_mat[train_index, , drop=FALSE]
-  y_train = y_mat[train_index, , drop=FALSE]
-  x_test = x_mat[test_index, , drop=FALSE]
-  y_test = y_mat[test_index, , drop=FALSE]
-  
-  # estimate the parameters
-  fast_model = Estimate_GP_params(x_train, y_train) 
-  
-  # detect changepoints sequentially
-  Online_CPD_2 = NULL
-  init_params = list(gamma = 1/fast_model@beta,
-                     eta = fast_model@eta,
-                     sigma_2 = fast_model@sigma_2)
-  for(i in 1:length(test_index)){
-    if(sum(is.na(y_test[i,]))==0){
-      Online_CPD_2 = SKFCPD(design = x_test[i, , drop=FALSE],
-                            response = y_test[i, , drop=FALSE],
-                            FCPD = Online_CPD_2,
-                            init_params = init_params)
-    }
-  }
 }

@@ -7,11 +7,11 @@ Plot for SKFCPD model
 Function to make plots on SKFCPD models after the SKFCPD model has been constructed.
 }
 \usage{
-plot_SKFCPD(x)
+plot_SKFCPD(x, type = "cp")
 }
 \arguments{
   \item{x}{ an object of  class \code{SKFCPD}.}
-
+  \item{type}{A character specifying the type of plot. \code{cp} plots the data with estimated changepoints marked in red crossings. \code{run_length_posterior} plots the matrix of run length posterior distribution.}
 }
 
 

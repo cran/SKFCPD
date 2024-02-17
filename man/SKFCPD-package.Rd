@@ -82,8 +82,6 @@ Gu, Mengyang, Xiaojing Wang, and James O. Berger. \emph{Robust Gaussian stochast
     y_mat[,j] = y_each_dim
   }
   
-  plot(y_mat[,1]~x_mat)
-  
   ## Detect changepoints by SKFCPD
   Online_CPD_1 = SKFCPD(design = x_mat,
                         response = y_mat,
